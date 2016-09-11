@@ -3,7 +3,7 @@ using namespace std;
 template <typename T>
 class stack
 {
-publick:
+public:
 	stack();
 	size_t count() const;
 	void push(T const &);
@@ -25,7 +25,7 @@ template <typename T>
 void stack <T> :: push(const T& b)
 {
 	
-		if (count_ == 0)
+		if (!count_)
 		{
 			array_ = new T[1];
 			array_[count_] = b;
