@@ -32,11 +32,6 @@ void stack <T> :: push(const T& b)
 			array_size_ = 1;
 			count_++;
 		}
-		else if (count_ == array_size_)
-		{
-			array_[count_] = b;
-			count_++;
-		}
 		else if (count_ < array_size_)
 		{
 			T * s_ = new T[array_size_];
