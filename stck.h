@@ -55,9 +55,16 @@ void stack <T> :: push(const T& b)
 
 }
 template <typename T>
-T stack<T>::pop()
+stack<T>::pop() -> T
 {
-	if(count_ > 0)
-	{return array_[count_--] }
+	if(!count_)
+{   
+ throw "\nSTACK IS EMPTY!";
+}
+
+else 
+{
+return array_[count_--];
+}
 }
 
