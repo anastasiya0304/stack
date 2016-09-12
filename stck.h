@@ -17,7 +17,7 @@ private:
 template <typename T>
 stack<T>::stack() : array_(nullptr), array_size_(0)
 {}
-size_t stack<T>::count() const
+size_t stack<T> :: count() const
 {
 	return count_;
 }
