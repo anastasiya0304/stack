@@ -22,5 +22,5 @@ private:
 	size_t array_size_;
 	size_t count_;
 };
-#include "stack.cpp"
+#include "stack.hpp"
 #endif
