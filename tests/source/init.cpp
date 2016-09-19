@@ -1,11 +1,11 @@
 #include "stack.hpp"
 #include <catch.hpp>
-SCENARIO("Stack: init", "[init]") {
+SCENARIO("stack: init", "[init]") {
 	stack<int> a;
 	REQUIRE(sizeof(a) != 0);
 	REQUIRE(a.count() == 0);
 }
-SCENARIO("Stack: operator==", "[op==]") {
+SCENARIO("stack: operator==", "[op==]") {
 	stack<int> a, b;
 	a.push(5);
 	a.push(3);
@@ -15,14 +15,14 @@ SCENARIO("Stack: operator==", "[op==]") {
 	b.push(5);
 	REQUIRE(a == b);
 }
-SCENARIO("Stack: operator=", "[op=]") {
+SCENARIO("stack: operator=", "[op=]") {
 	stack<int> a;
 	a.push(1);
 	stack<int> b;
 	b = a;
 	REQUIRE(b == a);
 }
-SCENARIO("Stack: count", "[op=]") {
+SCENARIO("stack: count", "[op=]") {
 	stack<int> a;
 	a.push(7);
 	a.push(6);
@@ -30,7 +30,7 @@ SCENARIO("Stack: count", "[op=]") {
 	a.push(9);
 	REQUIRE(a.count() == 4);
 }
-SCENARIO("Stack: pop", "[op=]") {
+SCENARIO("stack: pop", "[op=]") {
 	stack<int> a;
 	a.push(7);
 	a.push(6);
