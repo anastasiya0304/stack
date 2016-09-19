@@ -28,6 +28,5 @@ T*stack<T>::copy_new(const T*arr,size_t count,size_t array_size)
 {T*l=new T[array_size];
 std::copy(arr,arr+count,l);
 return;}
-
 #include "stack.cpp"
 #endif
