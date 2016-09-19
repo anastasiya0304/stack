@@ -38,15 +38,6 @@ T*stack<T>::copy_new(const T*arr,size_t count,size_t array_size)
 std::copy(arr,arr+count,l);
 return;}*/
 
-template<typename T>
-stack<T>::top() 
-{
-	if (count_ == 0) {
-		throw std::range_error("stack is empty");
-	}
-	return array_[count_ - 1];
-}
-
 template <typename T>
 stack<T>& stack<T>::operator=(const stack &b) 
 {
@@ -62,17 +53,13 @@ stack<T>& stack<T>::operator=(const stack &b)
 	return *this;
 }
 
-template <typename T>
-stack<T>::pop() -> T
+T stack<T>::pop()
 {
-	if(!count_)
-{   
- throw "\nSTACK IS EMPTY!";
-}
-
-else 
-{
-return array_[count_--];
+	if (!count_)
+	{
+		throw std::logic_error("Stack is empty!");
+	}
+	return array_[--count_];
 }
 }
 template<typename T>
