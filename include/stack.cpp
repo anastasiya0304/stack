@@ -3,11 +3,8 @@
 #define STACK_CPP
 
 template <typename T>
-stack<T>::stack()
-{count_=0;
-array_size_=1;
-array_=new T[array_size_];
-}
+stack<T>::stack() : count_(0), array_size_(1), array_(new T[array_size_])
+{}
 template <typename T>
 size_t stack<T> :: count() const
 {
