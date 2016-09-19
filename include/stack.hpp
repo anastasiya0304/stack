@@ -19,9 +19,9 @@ public:
 	stack & operator=(const stack &b);
 	bool operator==(stack const & _s);
 private:
-	T * array_;
 	size_t array_size_;
 	size_t count_;
+	T * array_;
 };
 template<typename T>
 T*copy_new(const T*arr,size_t count,size_t array_size)
