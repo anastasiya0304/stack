@@ -1,9 +1,15 @@
+#include "stdafx.h"
 #include "stack.hpp"
-using namespace std;
+#ifndef STACK_CPP
+#define STACK_CPP
 
 template <typename T>
-stack<T>::stack() : array_(nullptr), array_size_(0)
-{}
+stack<T>::stack()
+{count_=0;
+array_size_=1;
+array_=new T[array_size_];
+}
+template <typename T>
 size_t stack<T> :: count() const
 {
 	return count_;
@@ -27,14 +33,15 @@ void stack <T> :: push(const T& b)
 	array_[count_]=b;
 	count_++;
 }
-template<typename T>
+/*template<typename T>
 T*stack<T>::copy_new(const T*arr,size_t count,size_t array_size)
 {T*l=new T[array_size];
 std::copy(arr,arr+count,l);
-return;}
+return;}*/
 
 template<typename T>
-stack<T>::top() T& {
+stack<T>::top() 
+{
 	if (count_ == 0) {
 		throw std::range_error("stack is empty");
 	}
@@ -73,14 +80,16 @@ template<typename T>
 bool stack<T>::operator==(stack const & _s) 
 {
 	if ((_s.count_ != count_) || (_s.array_size_ != array_size_)) {
-		return false;
+	return false;
 	}
 	else {
-		for (size_t i = 0; i < count_; i++) {
-			if (_s.array_[i] != array_[i]) {
-				return false;
-			}
-		}
+	for (size_t i = 0; i < count_; i++) {
+	if (_s.array_[i] != array_[i]) {
+	return false;
+	}
+	}
 	}
 	return true;
 }
+
+#endif
