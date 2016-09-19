@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "stack.hpp"
 #ifndef STACK_CPP
 #define STACK_CPP
