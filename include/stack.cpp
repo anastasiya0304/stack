@@ -57,7 +57,7 @@ stack<T>& stack<T>::operator=(const stack &b)
 	return *this;
 }
 template <typename T>
-void stack<T>::pop()
+T stack<T>::pop()
 {
 	if (!count_)
 	{
