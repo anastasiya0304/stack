@@ -1,1 +1,1 @@
-https://github.com/anastasiya0304/stack
+https://travis-ci.org/anastasiya0304/stack
