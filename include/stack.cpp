@@ -53,7 +53,7 @@ stack<T>& stack<T>::operator=(const stack &b)
 	return *this;
 }
 template <typename T>
-T stack<T>::pop()
+void stack<T>::pop()
 {
 	if (!count_)
 	{
@@ -61,7 +61,7 @@ T stack<T>::pop()
 	}
          --count_;
 }
-}
+
 template<typename T>
 
 bool stack<T>::operator==(stack const & _s)
