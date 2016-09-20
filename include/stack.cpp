@@ -20,12 +20,16 @@ delete[] array_;
 template <typename T> 
 void stack <T> :: push(const T& b)
 {
-	if(count_==array_size_)
-	{array_size_*=2;
+if(count_==array_size_)
+	{
+	array_size_*=2;
 	T*l=copy_new(array_,count_,array_size_);
 	delete[] array_;
 	array_=l;
-	l=nullptr;}
+	l=nullptr;
+		
+	}
+	
 	array_[count_]=b;
 	count_++;
 }
@@ -59,7 +63,7 @@ void stack<T>::pop()
 	{
 		throw std::logic_error("Stack is empty!");
 	}
-         --count_;
+       return array_[--count_];
 }
 
 template<typename T>
