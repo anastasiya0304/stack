@@ -29,6 +29,9 @@ void stack <T> :: push(const T& b)
 	array_[count_]=b;
 	count_++;
 }
+template <typename T>
+stack<T>::stack(const stack&c) : array_size_(c.array_size_),count_(c.count_), array_(copy_new(c.array_, c.count_, c.array_size_ )) 
+{};
 /*template<typename T>
 T*stack<T>::copy_new(const T*arr,size_t count,size_t array_size)
 {T*l=new T[array_size];
@@ -56,23 +59,23 @@ T stack<T>::pop()
 	{
 		throw std::logic_error("Stack is empty!");
 	}
-	return array_[--count_];
+         --count_;
 }
 }
 template<typename T>
-bool stack<T>::operator==(stack const & _s) 
+
+bool stack<T>::operator==(stack const & _s)
 {
 	if ((_s.count_ != count_) || (_s.array_size_ != array_size_)) {
-	return false;
+		return false;
 	}
 	else {
-	for (size_t i = 0; i < count_; i++) {
-	if (_s.array_[i] != array_[i]) {
-	return false;
-	}
-	}
+		for (size_t i = 0; i < count_; i++) {
+			if (_s.array_[i] != array_[i]) {
+				return false;
+			}
+		}
 	}
 	return true;
 }
-
 #endif
