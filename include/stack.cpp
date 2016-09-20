@@ -63,7 +63,7 @@ T stack<T>::pop()
 	{
 		throw std::logic_error("Stack is empty!");
 	}
-  --count_;
+ return array_[--count_];
 }
 
 template<typename T>
