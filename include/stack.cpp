@@ -52,7 +52,7 @@ stack<T>& stack<T>::operator=(const stack &b)
 
 	return *this;
 }
-
+template <typename T>
 T stack<T>::pop()
 {
 	if (!count_)
