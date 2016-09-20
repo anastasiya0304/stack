@@ -14,7 +14,6 @@ public:
 	void push(T const &);
 	T pop();
 	~stack();
-	T top();
 	stack(const stack &b);
 	stack & operator=(const stack &b);
 	bool operator==(stack const & _s);
