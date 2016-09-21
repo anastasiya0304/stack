@@ -41,21 +41,21 @@ T*stack<T>::copy_new(const T*arr,size_t count,size_t array_size)
 {T*l=new T[array_size];
 std::copy(arr,arr+count,l);
 return;}*/
-
 template <typename T>
 stack<T>& stack<T>::operator=(const stack &b) 
 {
-	array_size_ = b.array_size_;
-	count_ = b.count_;
-	array_ = new T[array_size_];
+	
 	if (this != &b)
 	{
-		for (size_t i = 0; i < count_; i++)
-			array_[i] = b.array_[i];
+		delete[] array_;
+	array_size_ = b.array_size_;
+	count_ = b.count_;
+	array_ = copy_new(b.array_, count_, array_size_);
 	}
 
 	return *this;
 }
+
 template <typename T>
 T stack<T>::pop()
 {
