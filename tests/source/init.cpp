@@ -39,3 +39,13 @@ SCENARIO("stack: pop", "[op=]") {
 	a.pop();
 	REQUIRE(a.count() == 3);
 }
+SCENARIO("Stack: copy", "[copy]")
+{
+	stack<int> a;
+	a.push(7);
+	a.push(6);
+	a.push(8);
+	a.push(9);
+	stack<int> b = a;
+	REQUIRE(b == a);
+}
