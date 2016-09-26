@@ -46,12 +46,12 @@ stack<T>& stack<T>::operator=(const stack &b)
 {
 	
 	if (this != &b)
-	{
-		delete[] array_;
-	array_size_ = b.array_size_;
-	count_ = b.count_;
-	array_ = copy_new(b.array_, count_, array_size_);
-	}
+		{
+			delete[] array_;
+			array_size_ = b.array_size_;
+			count_ = b.count_;
+			array_ = copy_new(b.array_, count_, array_size_);
+		}
 
 	return *this;
 }
