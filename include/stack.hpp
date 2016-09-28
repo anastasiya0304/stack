@@ -13,6 +13,7 @@ public:
 	size_t count() const;
 	void push(T const &);
 	T pop();
+	const T& top();
 	~stack();
 	stack(const stack &b);
 	stack & operator=(const stack &b);
