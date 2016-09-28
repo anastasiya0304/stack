@@ -67,7 +67,12 @@ T stack<T>::pop()
 }
 
 template<typename T>
+const T& stack<T>::top()
+{
+	return array_[count_];
+}
 
+template<typename T>
 bool stack<T>::operator==(stack const & _s)
 {
 	if ((_s.count_ != count_) || (_s.array_size_ != array_size_)) {
