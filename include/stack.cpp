@@ -3,22 +3,22 @@
 #define STACK_CPP
 
 template <typename T>
-stack<T>::stack() : count_(0), array_size_(1), array_(new T[array_size_])
+stack<T>::stack() : count_(0), array_size_(1), array_(new T[array_size_])	/*strong*/
 {}
 template <typename T>
-size_t stack<T> :: count() const
+size_t stack<T> :: count() const	/*noexcept*/
 {
 	return count_;
 }
 
 template <typename T>
-stack<T>::~stack()
+stack<T>::~stack()	/*noexcept*/
 {
 delete[] array_;
 }
 
 template <typename T> 
-void stack <T> :: push(const T& b)
+void stack <T> :: push(const T& b)	/*strong*/
 {
 if(count_==array_size_)
 	{
@@ -34,7 +34,7 @@ if(count_==array_size_)
 	count_++;
 }
 template <typename T>
-stack<T>::stack(const stack&c) : array_size_(c.array_size_),count_(c.count_), array_(copy_new(c.array_, c.count_, c.array_size_ )) 
+stack<T>::stack(const stack&c) : array_size_(c.array_size_),count_(c.count_), array_(copy_new(c.array_, c.count_, c.array_size_ )) 	/*strong*/
 {};
 /*template<typename T>
 T*stack<T>::copy_new(const T*arr,size_t count,size_t array_size)
@@ -42,7 +42,7 @@ T*stack<T>::copy_new(const T*arr,size_t count,size_t array_size)
 std::copy(arr,arr+count,l);
 return;}*/
 template <typename T>
-stack<T>& stack<T>::operator=(const stack &b) 
+stack<T>& stack<T>::operator=(const stack &b)	/*strong*/
 {
 	
 	if (this != &b)
@@ -57,7 +57,7 @@ stack<T>& stack<T>::operator=(const stack &b)
 }
 
 template <typename T>
-T stack<T>::pop()
+T stack<T>::pop()	/*strong*/
 {
 	if (!count_)
 	{
@@ -67,13 +67,13 @@ T stack<T>::pop()
 }
 
 template<typename T>
-const T& stack<T>::top()
+const T& stack<T>::top()	/*strong*/
 {
 	return array_[count_];
 }
 
 template<typename T>
-bool stack<T>::operator==(stack const & _s)
+bool stack<T>::operator==(stack const & _s)	/*noexcept*/
 {
 	if ((_s.count_ != count_) || (_s.array_size_ != array_size_)) {
 		return false;
