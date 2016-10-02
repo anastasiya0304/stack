@@ -87,4 +87,9 @@ bool stack<T>::operator==(stack const & _s)	/*noexcept*/
 	}
 	return true;
 }
+template<typename T>
+bool stack<T>::empty() const except
+{
+	return (count_==0);
+}
 #endif
