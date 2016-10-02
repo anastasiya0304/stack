@@ -88,7 +88,7 @@ bool stack<T>::operator==(stack const & _s)	/*noexcept*/
 	return true;
 }
 template<typename T>
-bool stack<T>::empty() const except
+bool stack<T>::empty() const noexcept
 {
 	return (count_==0);
 }
