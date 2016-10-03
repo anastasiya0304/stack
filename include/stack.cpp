@@ -96,4 +96,10 @@ bool stack<T>::empty() const noexcept
 {
 	return (count_==0);
 }
+void stack<T>::swap(stack &v)
+{
+	std::swap(v.array_size_,array_size_);
+	std::swap(v.count_,count_);
+	std::swap(v.array_,array_);
+}
 #endif
