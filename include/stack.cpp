@@ -44,20 +44,18 @@ return;}*/
 template <typename T>
 stack<T>& stack<T>::operator=(const stack &b)	/*strong*/
 {
-	
+
 	if (this != &b)
-		{
-			delete[] array_;
-			array_size_ = b.array_size_;
-			count_ = b.count_;
-			array_ = copy_new(b.array_, count_, array_size_);
-		}
+	{
+	  (stack(b)).swap(*this);
+	}
+	
 
 	return *this;
 }
 
 template <typename T>
-void stack<T>::pop()	/*strong*/
+void stack<T>::pop()	/*basic*/
 {
 	if (!count_)
 	{
