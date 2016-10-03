@@ -69,7 +69,11 @@ T stack<T>::pop()	/*strong*/
 template<typename T>
 const T& stack<T>::top()	/*strong*/
 {
-	return array_[count_];
+	if (count_ == 0)
+	{
+		throw std::logic_error("Stack is empty!");
+	}
+	return array_[count_-1];
 }
 
 template<typename T>
