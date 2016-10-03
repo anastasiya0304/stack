@@ -19,7 +19,7 @@ public:
 	stack & operator=(const stack &b);
 	bool operator==(stack const & _s);
 	bool empty() const noexcept;
-	void swap(stack &tmp);
+	void swap(stack &v);
 private:
 	size_t array_size_;
 	size_t count_;
