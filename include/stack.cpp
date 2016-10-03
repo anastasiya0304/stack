@@ -57,13 +57,13 @@ stack<T>& stack<T>::operator=(const stack &b)	/*strong*/
 }
 
 template <typename T>
-T stack<T>::pop()	/*strong*/
+void stack<T>::pop()	/*strong*/
 {
 	if (!count_)
 	{
 		throw std::logic_error("Stack is empty!");
 	}
- return array_[--count_];
+	--count_;
 }
 
 template<typename T>
