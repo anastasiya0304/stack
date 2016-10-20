@@ -25,7 +25,7 @@ class stack : private allocator<T>
 public:
 	stack();
 	size_t count() const;
-	void push(T const &);
+	void push(T const &elem);
 	void pop();
 	const T& top();
 	~stack();
