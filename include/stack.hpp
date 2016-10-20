@@ -52,7 +52,7 @@ T*copy_new(const T*arr,size_t count,size_t array_size)
 	{
 		delete[] l;
 		throw;
-	}
+	} 
 	return l;
 	
 }
