@@ -125,7 +125,7 @@ stack<T>& stack<T>::operator=(const stack &b)
 	{
 		T* stk = copy_new(b.array_, b.count_, b.array_size_);
 		delete[] allocator<T>::array_;
-		allocator<T>::array_ = b;
+		allocator<T>::array_ = stk;
 		allocator<T>::array_size_ = b.array_size_;
 		allocator<T>::count_ = b.count_;
 	}
