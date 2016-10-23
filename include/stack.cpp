@@ -48,7 +48,7 @@ bool stack<T>::empty()const noexcept
 };
 
 template <typename T>
-allocator<T>::allocator(size_t size) : array_(static_cast<T *>(size == 0 ? nullptr : operator new(size * sizeof(T)))), array_size_(0), count_(size) 
+allocator<T>::allocator(size_t size) : array_(static_cast<T *>(size == 0 ? nullptr : operator new(size * sizeof(T)))), array_size_(size), count_(0) 
 {};
 
 template <typename T>
