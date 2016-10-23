@@ -23,7 +23,7 @@ template <typename T>
 class stack : private allocator<T>
 {
 public:
-	stack();
+	stack(size_t size = 0);
 	size_t count() const;
 	void push(T const &elem);
 	size_t pop();
@@ -33,7 +33,6 @@ public:
 	stack & operator=(const stack &b);
 	bool operator==(stack const & _s);
 	bool empty() const noexcept;
-	void swap(stack &v);
 };
 template<typename T>
 T*copy_new(const T*arr,size_t count,size_t array_size)
