@@ -78,14 +78,14 @@ size_t stack<T>::count() const noexcept
 }
 
 template <typename T>
-void stack<T>::pop()
+size_t stack<T>::pop()
 {
 	if (allocator<T>::count_ == 0)
 	{
 		throw std::logic_error("Stack is empty!");
 	}
 	destroy(allocator<T>::array_ + allocator<T>::count_);
-	--allocator<T>::count_;
+	return --allocator<T>::count_;
 }
 template <typename T>
 const T& stack<T>::top()
