@@ -73,7 +73,7 @@ size_t stack<T>::pop()
 	return --allocator<T>::count_;
 }
 template <typename T>
-const T& stack<T>::top()
+const T& stack<T>::top() const
 {
 	if (allocator<T>::count_ == 0)
 	{
