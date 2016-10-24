@@ -26,7 +26,7 @@ public:
 	stack(size_t size = 0);
 	size_t count() const;
 	void push(T const &elem);
-	size_t pop();
+	void pop();
 	const T& top();
 	~stack();
 	stack(const stack &b);
