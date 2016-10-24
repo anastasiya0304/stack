@@ -25,21 +25,7 @@ void destroy(FwdIter first, FwdIter last) noexcept
 
 
 
-template <typename T>
-T* copy_new(const T * arr, size_t count, size_t array_size)
-{
-	T * stk = new T[array_size];
-	try
-	{
-		std::copy(arr, arr + count, stk);
-	}
-	catch (...)
-	{
-		delete[] stk;
-		throw;
-	}
-	return stk;
-};
+
 
 template<typename T> 
 bool stack<T>::empty()const noexcept 
@@ -123,21 +109,15 @@ stack<T>::stack(const stack&b)
 	allocator<T>::array_size_ = b.array_size_;
 	allocator<T>::array_ = copy_new(b.array_, b.count_, b.array_size_);
 }
-template <typename T>
-stack<T>& stack<T>::operator=(const stack &b)
-{
-
-	if (this != &b)
-	{
-		T* stk = copy_new(b.array_, b.count_, b.array_size_);
-		delete[] allocator<T>::array_;
-		allocator<T>::array_ = stk;
-		allocator<T>::array_size_ = b.array_size_;
-		allocator<T>::count_ = b.count_;
+template<typename T>
+stack<T>& stack<T>::operator=(const stack& b){
+	if (this != &b){
+		stack<T> temp(b);
+		this->swap(temp);
 	}
-
 	return *this;
 }
+
 
 template<typename T>
 bool stack<T>::operator==(stack const & _s)
