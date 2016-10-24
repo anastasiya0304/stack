@@ -63,7 +63,7 @@ size_t stack<T>::count() const noexcept
 }
 
 template <typename T>
-size_t stack<T>::pop()
+void stack<T>::pop()
 {
 	if (allocator<T>::count_ == 0)
 	{
