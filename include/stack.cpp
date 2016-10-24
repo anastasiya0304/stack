@@ -103,12 +103,13 @@ stack<T>::~stack()
   }
 
 template <typename T>
-stack<T>::stack(const stack&b)
+stack<T>::stack(const stack& x) : allocator<T>(x.size_)
 {
-	allocator<T>::count_ = b.count_;
-	allocator<T>::array_size_ = b.array_size_;
-	allocator<T>::array_ = copy_new(b.array_, b.count_, b.array_size_);
-}
+	for (size_t i = 0; i < x.count_; i++) construct(allocator<T>::ptr_ + i, x.ptr_[i]);
+	allocator<T>::count_ = x.count_;
+};
+
+
 template<typename T>
 stack<T>& stack<T>::operator=(const stack& b){
 	if (this != &b){
