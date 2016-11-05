@@ -112,7 +112,7 @@ stack<T>::stack(const stack& x) : allocator<T>(x.size_)
 
 
 template<typename T>
-stack<T>& stack<T>::operator=(const stack& b){
+stack<T>& stack<T>::operator=(const stack& other){
 	if (this != &b){
 		stack<T> temp(b);
 		this->swap(temp);
