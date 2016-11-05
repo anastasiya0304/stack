@@ -4,35 +4,82 @@
 #include <iostream>
 #include <memory>
 
-template <typename T>
-class allocator {
-protected:
-	allocator(size_t size = 0); 
-	~allocator(); 
-	auto swap(allocator & other) -> void; 
+class bitset
+{
+public:
+explicit
+bitset( size_t size ) /*strong*/;
 
-	allocator(allocator const &) = delete;
-	auto operator=(allocator const &)->allocator & = delete;
+bitset( bitset const & other ) = delete;
+auto operator =( bitset const & other ) -> bitset & = delete;
 
-	T * ptr_;
-	size_t size_;
-	size_t count_;
+bitset( bitset && other ) = delete;
+auto operator =( bitset && other ) -> bitset & = delete;
+
+auto set( size_t index ) /*strong*/ -> void;
+auto reset( size_t index ) /*strong*/ -> void;
+auto test( size_t index ) /*strong*/ -> bool;
+
+auto size() /*noexcept*/ -> size_t;
+auto counter() /*noexcept*/ -> size_t;
+
+private:
+std::unique_ptr<bool[]> ptr_;
+size_t size_;
+size_t counter_;
 };
 
 template <typename T>
-class stack : private allocator<T>
+class allocator
 {
 public:
-	stack(size_t size = 0);
-	size_t count() const;
-	void push(T const &elem);
-	void pop();
-	const T& top();
-	~stack();
-	stack(const stack &b);
-	stack & operator=(const stack &b);
-	bool operator==(stack const & _s);
-	bool empty() const noexcept;
+explicit
+allocator( std::size_t size = 0 ) /*strong*/;
+allocator( allocator const & other ) /*strong*/;
+auto operator =( allocator const & other ) -> allocator & = delete;
+~allocator();
+
+auto resize() /*strong*/ -> void;
+
+auto construct(T * ptr, T const & value ) /*strong*/ -> void;
+auto destroy( T * ptr ) /*noexcept*/ -> void;
+
+auto get() /*noexcept*/ -> T *;
+auto get() const /*noexcept*/ -> T const *;
+
+auto count() const /*noexcept*/ -> size_t;
+auto full() const /*noexcept*/ -> bool;
+auto empty() const /*noexcept*/ -> bool;
+private:
+auto destroy( T * first, T * last ) /*noexcept*/ -> void;
+auto swap( allocator & other ) /*noexcept*/ -> void;
+
+
+T * ptr_;
+size_t size_;
+std::unique_ptr<bitset> map_;
+};
+
+template <typename T>
+class stack
+{
+public:
+explicit
+stack( size_t size = 0 );
+auto operator =( stack const & other ) /*strong*/ -> stack &;
+
+auto empty() const /*noexcept*/ -> bool;
+auto count() const /*noexcept*/ -> size_t;
+
+auto push( T const & value ) /*strong*/ -> void;
+auto pop() /*strong*/ -> void;
+auto top() /*strong*/ -> T &;
+auto top() const /*strong*/ -> T const &;
+
+private:
+allocator<T> allocator_;
+
+auto throw_is_empty() const -> void;
 };
 
 #include "stack.cpp"
