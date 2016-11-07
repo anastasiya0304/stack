@@ -54,7 +54,8 @@ private:
 auto destroy( T * first, T * last ) /*noexcept*/ -> void;
 auto swap( allocator & other ) /*noexcept*/ -> void;
 
-
+private:
+  
 T * ptr_;
 size_t size_;
 std::unique_ptr<bitset> map_;
