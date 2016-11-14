@@ -84,14 +84,15 @@ auto allocator<T>::construct(T * ptr, T const & value)->void
 }
 
 template<typename T>
-auto allocator<T>::destroy(T* ptr)->void 
+auto allocator<T>::destroy(T * ptr)->void
 { 
-	if (!map_->test(ptr-ptr_)&&ptr>=ptr_&&ptr<=ptr_+this->count())
-	{
-		ptr->~T(); map_->reset(ptr - ptr_); 
-	}
-	--size_;
-	
+if (ptr < ptr_ || ptr >= ptr_ + size_ || map_->test(ptr-ptr_) == false)
+{
+		throw std::out_of_range("Error");
+}
+	ptr->~T();
+	map_->reset(ptr - ptr_);
+
 }
 
 template<typename T> //получаем ptr_
@@ -161,11 +162,10 @@ auto stack<T>::push(T const & value)->void
 }
 
 template<typename T>
-auto stack<T>::pop()->void
+auto stack<T>::pop()->void 
 {
-	if (this->count() > 0) allocator_.destroy(allocator_.get() + (this->count()-1));
-	else this->throw_is_empty();
-	
+	if (allocate.count() == 0) throw std::logic_error("Empty");
+	allocate.destroy(allocate.get() + (this->count() - 1));
 }
 
 template<typename T>
