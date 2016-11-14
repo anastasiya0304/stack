@@ -90,7 +90,7 @@ auto allocator<T>::destroy(T* ptr)->void
 	{
 		ptr->~T(); map_->reset(ptr - ptr_); 
 	}
-	--count_;
+	--size_;
 	
 }
 
