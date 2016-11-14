@@ -51,6 +51,10 @@ template<typename T>
 allocator<T>::allocator(allocator const& other) : allocator<T>(other.size_) //конструктор копирования
 {
 	for (size_t i=0; i < size_; i++) 
+	{ if (map_->test(i)) 
+	{ 
+		destroy (prt_+i); 
+	}
 		construct(ptr_ + i, other.ptr_[i]); 
 }
 
@@ -59,7 +63,7 @@ allocator<T>::~allocator()
 {
 	if (this->count() > 0) 
 	{
-		destroy(ptr_, ptr_ + size_);
+		destroy(ptr_, ptr_ + size_());
 	}
 	operator delete(ptr_);
 }
@@ -86,14 +90,17 @@ auto allocator<T>::construct(T * ptr, T const & value)->void
 template<typename T>
 auto allocator<T>::destroy(T * ptr)->void
 { 
-if (ptr < ptr_ || ptr >= ptr_ + size_ || map_->test(ptr-ptr_) == false)
+if (ptr < ptr_ || ptr >= ptr_ + size_)
 {
 		throw std::out_of_range("Error");
-}
+} else
+{
+    if (map_->test(ptr-ptr_) == false)
+{
 	ptr->~T();
 	map_->reset(ptr - ptr_);
 
-}
+}}
 
 template<typename T> //получаем ptr_
 auto allocator<T>::get()-> T* { return ptr_; }
