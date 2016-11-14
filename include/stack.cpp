@@ -14,7 +14,8 @@ auto bitset::set(size_t index)->void //инициализация всех би�
 
 auto bitset::reset(size_t index) throw(std::out_of_range) -> void //обнуление указанных битов
 {
-	if (index >= size_) {
+	if (index >= size_)
+	{
 		throw (std::out_of_range("problem with index"));
 	}
 	ptr_[index] = false;
@@ -23,7 +24,8 @@ auto bitset::reset(size_t index) throw(std::out_of_range) -> void //обнуле
 
 auto bitset::test(size_t index) const throw(std::out_of_range) -> bool //возвращает значение указанного бита
 {
-	if (index >= size_) {
+	if (index >= size_) 
+	{
 		throw (std::out_of_range("problem with index"));
 	}
 	return ptr_[index];
