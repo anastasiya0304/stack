@@ -17,11 +17,11 @@ bitset( bitset && other ) = delete;
 auto operator =( bitset && other ) -> bitset & = delete;
 
 auto set( size_t index ) /*strong*/ -> void;
-auto reset( size_t index ) /*strong*/ -> void;
-auto test( size_t index ) /*strong*/ -> bool;
+auto reset( size_t index ) throw(std::out_of_range)/*strong*/ -> void;
+auto test( size_t index ) const throw(std::out_of_range)/*strong*/ -> bool;
 
-auto size() /*noexcept*/ -> size_t;
-auto counter() /*noexcept*/ -> size_t;
+auto size() const /*noexcept*/ -> size_t;
+auto counter() const /*noexcept*/ -> size_t;
 
 private:
 std::unique_ptr<bool[]> ptr_;
