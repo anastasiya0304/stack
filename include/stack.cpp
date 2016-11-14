@@ -164,8 +164,8 @@ auto stack<T>::push(T const & value)->void
 template<typename T>
 auto stack<T>::pop()->void 
 {
-	if (allocate.count() == 0) throw std::logic_error("Empty");
-	allocate.destroy(allocate.get() + (this->count() - 1));
+	if (allocator_.count() == 0) throw std::logic_error("Empty");
+	allocator_.destroy(allocator_.get() + (this->count() - 1));
 }
 
 template<typename T>
