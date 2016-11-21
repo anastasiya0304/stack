@@ -58,7 +58,7 @@ allocator<T>::allocator(allocator const& other) : allocator<T>(other.size_) //к
 			destroy(ptr_, ptr_ +i); 
 		}
 	construct(ptr_ + i, other.ptr_[i]); 
-}
+}}
 
 template<typename T>
 allocator<T>::~allocator()
