@@ -55,7 +55,7 @@ allocator<T>::allocator(allocator const& other) : allocator<T>(other.size_) //к
 	{ 
 		if (map_->test(i)) 
 		{ 
-			destroy(ptr_, prt_ +i); 
+			destroy(ptr_, ptr_ +i); 
 		}
 	construct(ptr_ + i, other.ptr_[i]); 
 }
