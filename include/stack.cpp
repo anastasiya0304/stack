@@ -51,11 +51,12 @@ template<typename T>
 allocator<T>::allocator(allocator const& other) : allocator<T>(other.size_) //конструктор копирования
 {
 	for (size_t i=0; i < size_; i++) 
-	{ if (map_->test(i)) 
 	{ 
-		destroy (prt_+i); 
-	}
-		construct(ptr_ + i, other.ptr_[i]); 
+		if (map_->test(i)) 
+		{ 
+			destroy(prt_ +i); 
+		}
+	construct(ptr_ + i, other.ptr_[i]); 
 }
 
 template<typename T>
