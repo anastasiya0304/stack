@@ -3,6 +3,7 @@
 #ifndef STACK_CPP
 #define STACK_CPP
 
+
 bitset::bitset(size_t size) : ptr_(std::make_unique<bool[]>(size)),size_(size),counter_(0) 
 {}
 
