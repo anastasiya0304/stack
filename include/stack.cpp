@@ -65,7 +65,7 @@ allocator<T>::~allocator()
 {
 	if (this->count() > 0) 
 	{
-		destroy(ptr_, ptr_ + size_());
+		destroy(ptr_, ptr_ + size_);
 	}
 	operator delete(ptr_);
 }
