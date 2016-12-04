@@ -69,6 +69,7 @@ class stack
 public:
 explicit
 stack( size_t size = 0 );
+stack (stack const & other);
 auto operator =( stack const & other ) /*strong*/ -> stack &;
 
 auto empty() const /*noexcept*/ -> bool;
