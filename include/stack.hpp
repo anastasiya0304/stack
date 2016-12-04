@@ -207,20 +207,20 @@ auto top() /*strong*/ -> T &;
 auto top() const /*strong*/ -> T const &;
 
 private:
-allocator<T> allocate;
+allocator<T> allocator;
 mutable std::mutex mutex_;
 
 auto throw_is_empty() const -> void;
 };
 
 template<typename T>
-stack<T>::stack(size_t size) : allocate(size),mutex_() {};
+stack<T>::stack(size_t size) : allocator(size),mutex_() {};
 
 
 template <typename T>		
- stack<T>::stack(stack const & other) : allocate(0), mutex_() {		
+ stack<T>::stack(stack const & other) : allocator(0), mutex_() {		
  	std::lock_guard<std::mutex> lock(other.mutex_);		
- 	allocator<T>(other.allocate).swap(allocate);		
+ 	allocator<T>(other.allocator).swap(allocator);		
 }
 
 template <typename T>
@@ -230,8 +230,8 @@ auto stack<T>::operator=(const stack &other)->stack&
 	{
 		std::lock(mutex_, other.mutex_);		
  		std::lock_guard<std::mutex> lock_a(mutex_, std::adopt_lock);		
- 		std::lock_guard<std::mutex> lock_b(tmp.mutex_, std::adopt_lock);
-		stack(other).allocate.swap(allocate);
+ 		std::lock_guard<std::mutex> lock_b(other.mutex_, std::adopt_lock);
+		stack(other).allocator.swap(allocate);
 	}
 	return *this;
 }
@@ -239,7 +239,7 @@ auto stack<T>::operator=(const stack &other)->stack&
 template<typename T>
 auto stack<T>::empty() const->bool {
 	std::lock_guard<std::mutex> lock(mutex_);
-	return (allocate.count() == 0);
+	return (allocator_.count() == 0);
 }
 
 template<typename T>
