@@ -214,7 +214,7 @@ auto throw_is_empty() const -> void;
 };
 
 template<typename T>
-stack<T>::stack(size_t size = 0) : allocator_(size),mutex_() {};
+stack<T>::stack(size_t size) : allocator_(size),mutex_() {};
 
 
 template <typename T>		
