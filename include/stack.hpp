@@ -1,8 +1,10 @@
-#ifndef STACK_HPP
-#define STACK_HPP
-#include <cstdlib>
 #include <iostream>
+#include <new>  
+#include <stdexcept>
+#include <vector>
 #include <memory>
+#include <mutex>
+#include <thread>
 
 class bitset
 {
@@ -78,7 +80,8 @@ auto top() /*strong*/ -> T &;
 auto top() const /*strong*/ -> T const &;
 
 private:
-allocator<T> allocator_;
+allocator<T> allocate;
+mutable std::mutex mutex_;
 
 auto throw_is_empty() const -> void;
 };
