@@ -7,7 +7,7 @@
 bitset::bitset(size_t size) : ptr_(std::make_unique<bool[]>(size)),size_(size),counter_(0) 
 {}
 
-auto bitset::set(size_t index)->void //инициализация всех битов единицами или изменение значения тдельного бита
+auto bitset::set(size_t index)->void //инициализация всех битов единицами или изменение значения отдельного бита
 { 
 	if (index >= 0 && index < size_) 
 	{ 
