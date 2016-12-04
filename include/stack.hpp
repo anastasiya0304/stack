@@ -266,20 +266,21 @@ auto stack<T>::pop()->void
 	allocator_.destroy(allocator_.get() + (this->count() - 1));
 }
 
-template<typename T>
-auto stack<T>::top()->T& 
-{	
+template <typename T>
+auto stack<T>::top() const->const T&
+{
 	std::lock_guard<std::mutex> lock(mutex_);
-	if (this->count() > 0) return(*(allocator_.get() + this->count() - 1));
-	else this->throw_is_empty();
+	if (allocator_.count() == 0) throw std::logic_error("Empty!");
+	return(*(allocator_.get() + this->count() - 1));
+
 }
 
-template<typename T>
-auto stack<T>::top()const->T const & 
+template <typename T>
+auto stack<T>::top()->T&
 {
-	std::lock_guard<std::mutex> lock(mutex_);	
-	if (this->count() > 0) return(*(allocator_.get() + this->count() - 1));
-	else this->throw_is_empty();
+	std::lock_guard<std::mutex> lock(mutex_);
+	if (allocator_.count() == 0) throw std::logic_error("Empty!");
+	return(*(allocator_.get() + this->count() - 1));
 }
 
 
