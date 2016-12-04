@@ -214,11 +214,11 @@ auto throw_is_empty() const -> void;
 };
 
 template<typename T>
-stack<T>::stack(size_t size) : allocator(size),mutex_() {};
+stack<T>::stack(size_t size = 0) : allocator_(size),mutex_() {};
 
 
 template <typename T>		
- stack<T>::stack(stack const & other) : allocator(0), mutex_() 
+ stack<T>::stack(stack const & other) : allocator_(0), mutex_() 
  {		
  	std::lock_guard<std::mutex> lock(other.mutex_);		
  	allocator<T>(other.allocator_).swap(allocator_);		
@@ -238,7 +238,8 @@ auto stack<T>::operator=(const stack &other)->stack&
 }
 
 template<typename T>
-auto stack<T>::empty() const->bool {
+auto stack<T>::empty() const->bool 
+{
 	std::lock_guard<std::mutex> lock(mutex_);
 	return (allocator_.count() == 0);
 }
