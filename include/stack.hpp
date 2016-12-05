@@ -96,7 +96,7 @@ auto destroy( T * first, T * last ) /*noexcept*/ -> void;
 auto swap( allocator & other ) /*noexcept*/ -> void;
 
 private:
-  
+size_t count_;
 T * ptr_;
 size_t size_;
 std::unique_ptr<bitset> map_;
@@ -187,6 +187,7 @@ auto allocator<T>::swap(allocator & other)->void{
 	std::swap(ptr_, other.ptr_);
 	std::swap(size_, other.size_);
 	std::swap(map_, other.map_);
+	std::swap(count_, other.count_);
 }
 
 template <typename T>
