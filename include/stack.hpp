@@ -220,7 +220,7 @@ template <typename T>
  stack<T>::stack(stack const & other) : allocator_(0), mutex_() 
  {		
  	std::lock_guard<std::mutex> lock(other.mutex_);		
- 	allocator<T>(other.allocator_).swap(allocator_);		
+ 	allocator_.swap(allocator<T>(other.allocator_));		
 }
 
 template <typename T>
@@ -229,9 +229,9 @@ auto stack<T>::operator=(const stack &other)->stack&
 	if (this != &other) 
 	{
 		std::lock(mutex_, other.mutex_);		
- 		std::lock_guard<std::mutex> lock_a(mutex_, std::adopt_lock);		
- 		std::lock_guard<std::mutex> lock_b(other.mutex_, std::adopt_lock);
-		stack(other).allocator_.swap(allocator_);
+ 		std::lock_guard<std::mutex> lock_1(mutex_, std::adopt_lock);		
+ 		std::lock_guard<std::mutex> lock_2(other.mutex_, std::adopt_lock);
+		(allocator<T>(other.allocator_)).swap(allocator_);
 	}
 	return *this;
 }
