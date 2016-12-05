@@ -201,11 +201,9 @@ auto operator =( stack const & other ) /*strong*/ -> stack &;
 auto empty() const /*noexcept*/ -> bool;
 auto count() const /*noexcept*/ -> size_t;
 
-auto push( T const & value ) /*strong*/ -> shared_ptr<T>;
-auto pop() /*strong*/ -> void;
-auto top() /*strong*/ -> T &;
-auto top() const /*strong*/ -> T const &;
-
+auto push( T const & value ) /*strong*/ -> void;
+auto pop() /*strong*/ -> shared_ptr<T>;
+	
 private:
 allocator<T> allocator_;
 mutable std::mutex mutex_;
