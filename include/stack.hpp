@@ -91,7 +91,6 @@ auto get() const /*noexcept*/ -> T const *;
 auto count() const /*noexcept*/ -> size_t;
 auto full() const /*noexcept*/ -> bool;
 auto empty() const /*noexcept*/ -> bool;
-private:
 auto destroy( T * first, T * last ) /*noexcept*/ -> void;
 auto swap( allocator & other ) /*noexcept*/ -> void;
 
