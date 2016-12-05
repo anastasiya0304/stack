@@ -202,7 +202,7 @@ auto empty() const /*noexcept*/ -> bool;
 auto count() const /*noexcept*/ -> size_t;
 
 auto push( T const & value ) /*strong*/ -> void;
-auto pop() /*strong*/ -> shared_ptr<T>;
+auto pop() /*strong*/ -> std::shared_ptr<T>;
 	
 private:
 allocator<T> allocator_;
