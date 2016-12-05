@@ -201,7 +201,7 @@ auto operator =( stack const & other ) /*strong*/ -> stack &;
 auto empty() const /*noexcept*/ -> bool;
 auto count() const /*noexcept*/ -> size_t;
 
-auto push( T const & value ) /*strong*/ -> void;
+auto push( T const & value ) /*strong*/ -> shared_ptr<T>;
 auto pop() /*strong*/ -> void;
 auto top() /*strong*/ -> T &;
 auto top() const /*strong*/ -> T const &;
@@ -262,9 +262,9 @@ template <typename T>
 auto stack<T>::pop()->std::shared_ptr<T> 
 {
 	std::lock_guard<std::mutex> lock(mutex_);
-			if(allocate.empty()) throw std::logic_error("Empty!"); 
-				std::shared_ptr<T> const res(std::make_shared<T>(std::move(allocate.get()[allocate.count()-1])));
-			allocate.destroy(allocate.get() + allocate.count() - 1);
+			if(allocator_.empty()) throw std::logic_error("Empty!"); 
+				std::shared_ptr<T> const result(std::make_shared<T>(std::move(allocator_.get()[allocator_.count()-1])));
+			allocator_.destroy(allocator_.get() + allocator_.count() - 1);
 			return result;
 }
 
